@@ -21,12 +21,26 @@ router.get('/registro', function(request,response){
 router.get("/usuarios" ,(req,res)=>{
   return res.sendFile(views("usuarios.html"))
 })
+
+//ruta de editar 
+router.get("/editUser/:id" ,(req,res)=>{
+  return res.sendFile(views("editUser.html"))
+})
+
 router.get("/api/usuarios" ,async(req,res)=>{
     var usuarios= await userController.readAll()
     
     return res.json(usuarios)
   })
 
+  //obtener el usuario por el id para el editar
+router.get("/api/usuarios/:id" ,async(req,res)=>{
+  const id = req.params.id
+  var usuario= await userController.read(id)
+    
+    return res.json(usuario)
+  })
+  
 router.post("/usuarios" ,(req,res)=>{
     console.log(req.body)
     return res.json({usuarios: ["Tzuzul", "Gistavos"]})
@@ -40,6 +54,14 @@ router.delete("/api/usuarios/:id" ,async(req,res)=>{
     return res.json(user)
   })
 
+//ruta de editar otra
+router.post("/api/editUser/:id" ,async(req,res)=>{
+    const id = req.params.id
+    var user= await userController.edit(id,req.body)
+      
+      return res.redirect("/")
+    })
+  
 
 router.post('/registro', async function(request, response){
     const persona = request.body;

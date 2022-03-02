@@ -25,7 +25,9 @@ fetch("/api/usuarios")//dar orden de trae  algo
           <td>${user.Salario}</td>
          
           <td><button onClick="eliminar(${user.id})"> <span><i class=" fas fa-trash-alt icono-eliminar "></i> </span></button>
-          <button onClick="editar"> <span><i class=" fas fa-user-edit  icono-editar" ></i> </span></button>
+         <a href="/editUser/${user.id}"> <button > <span><i class=" fas fa-user-edit  icono-editar" ></i> </span></button></a>
+         
+        
           </td>
           
         

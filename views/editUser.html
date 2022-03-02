@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="formu" method="POST" >
+    
+    <label for="">Nombre</label>
+     <input type="text" name="Nombre"/>
+     <label for="">edad</label>
+     <input style="margin-left:40px;" type="number" name="Edad" />
+     <label for="">generio</label>
+     <input style="margin-left:22px;" type="text" name="Genero" />
+     <label for="">correo</label>
+     <input style="margin-left:22px;" type="email" name="Correo" />
+     <label for="">Profesion</label>
+     <input style="margin-left:5px;" type="text" name="Profesion" />
+     <label for="">salario</label>
+     <input style="margin-left:20px;" type="number" name="Salario" />
+     <label for="">fecha</label>
+     <input style="margin-left:4px; width: 170px;" type="date" name="fechaNacimiento" />
+       
+       
+        <button class="btn_submit" >Enviar</button>
+    </form>
+
+      <script>
+      //obtener el id dela url cuando le doy a editar al usuario 
+      //split para poder extrar despues de la pleca el indece que esta en la posicion 2 porque el 
+      //split nos devuelve un array donde alli podriamos acceder a la posicion donde este el id 
+    const idUser= window.location.pathname.split('/')[2];
+    const formulario = document.getElementById("formu");
+    fetch("/api/usuarios/" + idUser)
+    .then((res)=>{
+        return res.json()
+    })
+    .then((data)=>{
+        console.log(data )
+        //formulario.action ="/api/editUser/"+ idUser
+       //console.log(formularios.Nombre)
+       //console.log(formularios.Edad.value = data.Edad)
+       //console.log(formularios.Genero.value= data.Genero)
+       //console.log(formularios.Correo.value= data.Correo)
+       //console.log(formularios.Profesion.value = data.Profesion)
+       //console.log(formularios.Salario.value = data.Salario)
+       //console.log(formularios.fechaNacimiento.value = data.fechaNacimiento)
+       formulario.action ="/api/editUser/"+ idUser
+       formulario.Nombre.value = data.Nombre
+       formulario.Edad.value = data.Edad
+       formulario.Genero.value= data.Genero
+       formulario.Correo.value= data.Correo
+       formulario.Profesion.value = data.Profesion
+       formulario.Salario.value = data.Salario
+       formulario.fechaNacimiento.vale = data.fechaNacimiento
+    })
+</script>
+</body>
+</html>
